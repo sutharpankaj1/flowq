@@ -1,0 +1,20 @@
+[package]
+name = "flowq-storage"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Storage backends for FlowQ message broker"
+
+[features]
+default = ["memory"]
+memory = []
+
+[dependencies]
+flowq-types.workspace = true
+
+tokio.workspace = true
+async-trait.workspace = true
+parking_lot.workspace = true
+dashmap.workspace = true
+tracing.workspace = true
+chrono.workspace = true

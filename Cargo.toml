@@ -1,0 +1,63 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/flowq-types",
+    "crates/flowq-storage",
+    "crates/flowq-core",
+    "crates/flowq-server",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+license = "MIT OR Apache-2.0"
+authors = ["FlowQ Contributors"]
+repository = "https://github.com/flowq/flowq"
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# HTTP Framework
+axum = { version = "0.7", features = ["macros"] }
+tower = "0.4"
+tower-http = { version = "0.5", features = ["cors", "trace"] }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Utilities
+uuid = { version = "1.6", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+bytes = "1.5"
+parking_lot = "0.12"
+dashmap = "5.5"
+async-trait = "0.1"
+
+# OpenAPI / Swagger
+utoipa = { version = "5", features = ["axum_extras", "chrono", "uuid"] }
+utoipa-swagger-ui = { version = "8", features = ["axum"] }
+
+# Internal crates
+flowq-types = { path = "crates/flowq-types" }
+flowq-storage = { path = "crates/flowq-storage" }
+flowq-core = { path = "crates/flowq-core" }
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
+
+[profile.dev]
+opt-level = 0
+debug = true

@@ -1,0 +1,39 @@
+[package]
+name = "flowq-server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "FlowQ message broker server"
+
+[[bin]]
+name = "flowq"
+path = "src/main.rs"
+
+[dependencies]
+flowq-types.workspace = true
+flowq-storage.workspace = true
+flowq-core.workspace = true
+
+# Async runtime
+tokio.workspace = true
+
+# HTTP framework
+axum.workspace = true
+tower.workspace = true
+tower-http.workspace = true
+
+# Serialization
+serde.workspace = true
+serde_json.workspace = true
+
+# Logging
+tracing.workspace = true
+tracing-subscriber.workspace = true
+
+# Error handling
+thiserror.workspace = true
+anyhow.workspace = true
+
+# OpenAPI / Swagger
+utoipa.workspace = true
+utoipa-swagger-ui.workspace = true
